@@ -10,6 +10,8 @@ class FeedsController < ApplicationController
   end
 
   def show
+    @feed = Feed.find_by(id:params[:id])
+    @user = User.find_by(id:@feed.user_id)
   end
 
   def new
@@ -24,7 +26,10 @@ class FeedsController < ApplicationController
   end
 
   def create
-    @feed = Feed.new(feed_params)
+    # @feed = Feed.new(feed_params)
+    # @feed.user_id = current_user.id
+    # @feed = current_user.feeds.new(feed_params)
+    @feed = current_user.feeds.build(feed_params)
     respond_to do |format|
       if @feed.save
         format.html { redirect_to feed_url(@feed), notice: "Feed was successfully created." }
