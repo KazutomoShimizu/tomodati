@@ -5,6 +5,8 @@
     <%= image_tag(feed.image.url) if feed.image && feed.image.url %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
+    <%= form.label :body%>
+    <%= form.text_area :body%>
   </div>
 
   <div class="actions">
